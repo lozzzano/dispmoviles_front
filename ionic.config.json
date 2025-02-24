@@ -1,0 +1,7 @@
+{
+  "name": "dispmoviles",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite"
+}
