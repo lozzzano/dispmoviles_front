@@ -1,0 +1,5 @@
+.nav-item.active .nav-link {
+    background-color: #495057; /* Gris claro */
+    border-radius: 5px;
+    font-weight: bold;
+}

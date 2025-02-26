@@ -3,9 +3,20 @@ import { IonReactRouter } from '@ionic/react-router';
 import { Redirect, Route } from 'react-router-dom';
 import Menu from './components/Menu';
 import Page from './pages/Page';
+import Register from './pages/Register';
+import Login from './pages/Login';
+import NavBar from './components/NavBar';
+import Home from './pages/Home';
+import Sports from './pages/Sports';
+import SportDetail from './components/SportDetail';
+
+//css
+import '../src/pages/Page.css';
+
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 /* Basic CSS for apps built with Ionic */
 import '@ionic/react/css/normalize.css';
@@ -37,22 +48,30 @@ import './theme/variables.css';
 setupIonicReact();
 
 const App: React.FC = () => {
+  const isAuthenticated = !!localStorage.getItem('token'); // Comprueba si hay un token de autenticación
+
   return (
-    <IonApp>
-      <IonReactRouter>
-        <IonSplitPane contentId="main">
-          <Menu />
-          <IonRouterOutlet id="main">
-            <Route path="/" exact={true}>
-              <Redirect to="/folder/Inbox" />
-            </Route>
-            <Route path="/folder/:name" exact={true}>
-              <Page />
-            </Route>
-          </IonRouterOutlet>
-        </IonSplitPane>
-      </IonReactRouter>
-    </IonApp>
+      <IonApp>
+          <IonReactRouter>
+              <IonRouterOutlet>
+                  {/* Rutas de autenticación */}
+                  <Route exact path="/register" component={Register} />
+                  <Route exact path="/login" component={Login} />
+
+                  {/* Rutas protegidas */}
+                  {isAuthenticated ? (
+                      <>
+                          <Route exact path="/home" component={Home} />
+                          <Route exact path="/home/sports" component={Sports} />
+                          <Route exact path="/sports/:id" component={SportDetail} />
+                          
+                      </>
+                  ) : (
+                      <Redirect to="/login" />
+                  )}
+              </IonRouterOutlet>
+          </IonReactRouter>
+      </IonApp>
   );
 };
 
