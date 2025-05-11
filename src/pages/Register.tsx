@@ -16,8 +16,10 @@ const Register: React.FC = () => {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         try {
-            const response = await axios.post('https://dispmovilesapi-production.up.railway.app/api/register', form);
+            //const response = await axios.post('https://dispmovilesapi-production.up.railway.app/api/register', form);
+            const response = await axios.post('http://127.0.0.1:8000/api/register', form);
             localStorage.setItem('token', response.data.token);
+            localStorage.setItem("user_id", response.data.usuario_id); 
             window.location.replace('/home');
         } catch (error) {
             alert('Error al registrar: ' + error);

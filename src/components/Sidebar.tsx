@@ -42,7 +42,14 @@ const Sidebar: React.FC = () => {
                     overflow: 'hidden'
                 }}
             >
-                <h5 className="mb-4 mt-5">App Deportiva</h5>
+                <h5 className="mb-4 mt-5 d-flex align-items-center">
+                <img 
+                    src="/icon.png" 
+                    alt="App Icon" 
+                    style={{ width: '50px', height: '50px', marginRight: '10px' }} 
+                />
+                TeamFinder
+                </h5>
                 <ul className="nav flex-column">
                     <li className={`nav-item mb-2 ${isActive('/home')}`}>
                         <Link to="/home" className="nav-link text-white" onClick={handleToggle}>
@@ -52,22 +59,39 @@ const Sidebar: React.FC = () => {
                     </li>
                     <li className={`nav-item mb-2 ${isActive('/home/sports')}`}>
                         <Link to="/home/sports" className="nav-link text-white" onClick={handleToggle}>
-                            <i className="bi bi-calendar-event-fill me-2"></i>
+                            <i className="bi bi-trophy-fill me-2"></i>
                             Deportes
                         </Link>
                     </li>
                     <li className={`nav-item mb-2 ${isActive('/clubs')}`}>
                         <Link to="/clubs" className="nav-link text-white" onClick={handleToggle}>
                             <i className="bi bi-people-fill me-2"></i>
-                            Clubs
+                            Clubes
                         </Link>
                     </li>
+
+                    {/* 🔥 NUEVO: Opción de Foros de Discusión 🔥 */}
+                    <li className={`nav-item mb-2 ${isActive('/home/forums')}`}>
+                        <Link to="/home/forums" className="nav-link text-white" onClick={handleToggle}>
+                            <i className="bi bi-chat-dots-fill me-2"></i>  {/* 👈 Icono de chat */}
+                            Foros
+                        </Link>
+                    </li>
+
                     <li className={`nav-item mb-2 ${isActive('/eventos')}`}>
                         <Link to="/eventos" className="nav-link text-white" onClick={handleToggle}>
                             <i className="bi bi-calendar-event-fill me-2"></i>
                             Eventos
                         </Link>
                     </li>
+
+                    <li className={`nav-item mb-2 ${isActive('/eventos')}`}>
+                        <Link to="/home/sports" className="nav-link text-white" onClick={handleToggle}>
+                            <i className="bi bi-trophy me-2"></i>
+                            Catálogo de Deportes
+                        </Link>
+                    </li>
+
                     <li className={`nav-item mb-2 ${isActive('/perfil')}`}>
                         <Link to="/perfil" className="nav-link text-white" onClick={handleToggle}>
                             <i className="bi bi-person-fill me-2"></i>
@@ -81,6 +105,7 @@ const Sidebar: React.FC = () => {
                         </button>
                     </li>
                 </ul>
+
             </div>
 
             {/* Botón de Menú Hamburguesa SIEMPRE visible */}
